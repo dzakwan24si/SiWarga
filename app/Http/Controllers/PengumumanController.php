@@ -47,7 +47,12 @@ class PengumumanController extends Controller
         $validated['user_id'] = $user->id;
         $validated['is_active'] = $request->has('is_active');
 
-        Pengumuman::create($validated);
+        $pengumuman = Pengumuman::create($validated);
+
+        if ($pengumuman->is_active) {
+            $wargaUsers = \App\Models\User::where('role', 'warga')->get();
+            \Illuminate\Support\Facades\Notification::send($wargaUsers, new \App\Notifications\PengumumanNotification($pengumuman, 'Ada pengumuman baru dari pengurus.'));
+        }
 
         return redirect()->route('pengumuman.index')->with('success', 'Pengumuman berhasil ditambahkan.');
     }

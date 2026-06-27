@@ -130,13 +130,18 @@ class SuratController extends Controller
             ];
         }
 
-        Surat::create([
+        $surat = Surat::create([
             'user_id' => Auth::id(),
             'jenis_surat' => $jenisSurat,
             'keperluan' => $validated['keperluan'],
             'data_tambahan' => $dataTambahan,
             'status' => 'menunggu_rt',
         ]);
+
+        $rtUser = \App\Models\User::where('role', 'rt')->where('rt_number', Auth::user()->warga->rt_number)->first();
+        if ($rtUser) {
+            $rtUser->notify(new \App\Notifications\SuratNotification($surat, 'Ada pengajuan surat baru dari warga.'));
+        }
 
         return redirect()->route('surat.index')->with('success', 'Pengajuan surat berhasil dikirim ke RT.');
     }
@@ -176,6 +181,15 @@ class SuratController extends Controller
                 $surat->keterangan_penolakan = $request->keterangan_penolakan;
             }
             $surat->save();
+            
+            $surat->user->notify(new \App\Notifications\SuratNotification($surat, 'Status surat Anda telah diperbarui oleh RT.'));
+            if ($surat->status === 'menunggu_rw') {
+                $rwUser = \App\Models\User::where('role', 'rw')->first();
+                if ($rwUser) {
+                    $rwUser->notify(new \App\Notifications\SuratNotification($surat, 'Ada pengajuan surat baru yang telah disetujui RT.'));
+                }
+            }
+
             return redirect()->route('surat.show', $surat->id)->with('success', 'Status surat berhasil diperbarui (RT).');
         }
 
@@ -187,6 +201,9 @@ class SuratController extends Controller
                 $surat->keterangan_penolakan = $request->keterangan_penolakan;
             }
             $surat->save();
+            
+            $surat->user->notify(new \App\Notifications\SuratNotification($surat, 'Status surat Anda telah diperbarui oleh RW.'));
+
             return redirect()->route('surat.show', $surat->id)->with('success', 'Status surat berhasil diperbarui (RW).');
         }
 

@@ -1,12 +1,12 @@
-<x-app-layout>
+<x-dynamic-component :component="Auth::user()->role === 'warga' ? 'warga-layout' : 'app-layout'">
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-slate-800 leading-tight">
             {{ __('Buat Laporan / Keluhan') }}
         </h2>
     </x-slot>
 
-    <div class="py-6">
-        <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
+    <div class="{{ Auth::user()->role === 'warga' ? 'max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8' : 'py-6 max-w-7xl mx-auto sm:px-6 lg:px-8' }}">
+        <div class="max-w-3xl mx-auto">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-xl">
                 <div class="p-6">
                     <form method="POST" action="{{ route('laporan.store') }}" enctype="multipart/form-data">
@@ -97,4 +97,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+</x-dynamic-component>

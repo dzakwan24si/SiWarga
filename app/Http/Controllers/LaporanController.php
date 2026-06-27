@@ -53,13 +53,18 @@ class LaporanController extends Controller
             $fotoPath = $request->file('foto_lampiran')->store('laporan_fotos', 'public');
         }
 
-        Laporan::create([
+        $laporan = Laporan::create([
             'user_id' => Auth::id(),
             'judul' => $validated['judul'],
             'deskripsi' => $validated['deskripsi'],
             'foto_lampiran' => $fotoPath,
             'status' => 'menunggu',
         ]);
+
+        $rtUser = \App\Models\User::where('role', 'rt')->where('rt_number', Auth::user()->warga->rt_number)->first();
+        if ($rtUser) {
+            $rtUser->notify(new \App\Notifications\LaporanNotification($laporan, 'Ada laporan warga baru yang masuk.'));
+        }
 
         return redirect()->route('laporan.index')->with('success', 'Laporan berhasil dikirim.');
     }
@@ -96,6 +101,8 @@ class LaporanController extends Controller
         $laporan->update([
             'status' => $request->status,
         ]);
+
+        $laporan->user->notify(new \App\Notifications\LaporanNotification($laporan, 'Status laporan Anda telah diperbarui menjadi ' . $request->status . '.'));
 
         return redirect()->route('laporan.show', $laporan->id)->with('success', 'Status laporan berhasil diperbarui.');
     }

@@ -62,7 +62,10 @@ class KeuanganController extends Controller
 
         $validated['user_id'] = Auth::id();
 
-        KasKeuangan::create($validated);
+        $kas = KasKeuangan::create($validated);
+
+        $wargaUsers = \App\Models\User::where('role', 'warga')->get();
+        \Illuminate\Support\Facades\Notification::send($wargaUsers, new \App\Notifications\KasKeuanganNotification($kas, 'Ada pembaruan transparansi kas keuangan RT/RW.'));
 
         return redirect()->route('keuangan.index')->with('success', 'Data transaksi berhasil ditambahkan.');
     }

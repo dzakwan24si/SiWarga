@@ -25,30 +25,45 @@
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 relative overflow-hidden flex items-center">
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 relative overflow-hidden flex items-center hover:shadow-md transition-shadow">
                     <div class="flex-1 relative z-10">
-                        <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider">Total RT</h4>
-                        <p class="mt-2 text-4xl font-extrabold text-slate-900">0</p>
+                        <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Total RT</h4>
+                        <div class="flex items-center space-x-3">
+                            <p class="text-4xl font-extrabold text-slate-900">0</p>
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-blue-50 text-blue-700 border border-blue-100">
+                                Tetap
+                            </span>
+                        </div>
                     </div>
                     <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-blue-50 rounded-full flex items-center justify-center text-blue-600 opacity-60">
                         <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
                     </div>
                 </div>
 
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 relative overflow-hidden flex items-center">
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 relative overflow-hidden flex items-center hover:shadow-md transition-shadow">
                     <div class="flex-1 relative z-10">
-                        <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider">Total Warga</h4>
-                        <p class="mt-2 text-4xl font-extrabold text-slate-900">0</p>
+                        <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Total Warga</h4>
+                        <div class="flex items-center space-x-3">
+                            <p class="text-4xl font-extrabold text-slate-900">0</p>
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-100">
+                                ↑ +2 Bulan ini
+                            </span>
+                        </div>
                     </div>
                     <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-emerald-50 rounded-full flex items-center justify-center text-emerald-600 opacity-60">
                         <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                     </div>
                 </div>
 
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 relative overflow-hidden flex items-center">
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 relative overflow-hidden flex items-center hover:shadow-md transition-shadow">
                     <div class="flex-1 relative z-10">
-                        <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider">Menunggu Persetujuan</h4>
-                        <p class="mt-2 text-4xl font-extrabold text-slate-900">0</p>
+                        <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Menunggu Persetujuan</h4>
+                        <div class="flex items-center space-x-3">
+                            <p class="text-4xl font-extrabold text-slate-900">0</p>
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-100">
+                                Perlu aksi
+                            </span>
+                        </div>
                     </div>
                     <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-amber-50 rounded-full flex items-center justify-center text-amber-600 opacity-60">
                         <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -63,30 +78,45 @@
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 relative overflow-hidden flex items-center">
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 relative overflow-hidden flex items-center hover:shadow-md transition-shadow">
                     <div class="flex-1 relative z-10">
-                        <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider">Total Kepala Keluarga</h4>
-                        <p class="mt-2 text-4xl font-extrabold text-slate-900">0</p>
+                        <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Total Kepala Keluarga</h4>
+                        <div class="flex items-center space-x-3">
+                            <p class="text-4xl font-extrabold text-slate-900">0</p>
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-blue-50 text-blue-700 border border-blue-100">
+                                Tetap
+                            </span>
+                        </div>
                     </div>
                     <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-blue-50 rounded-full flex items-center justify-center text-blue-600 opacity-60">
                         <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
                     </div>
                 </div>
 
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 relative overflow-hidden flex items-center">
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 relative overflow-hidden flex items-center hover:shadow-md transition-shadow">
                     <div class="flex-1 relative z-10">
-                        <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider">Total Warga</h4>
-                        <p class="mt-2 text-4xl font-extrabold text-slate-900">0</p>
+                        <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Total Warga</h4>
+                        <div class="flex items-center space-x-3">
+                            <p class="text-4xl font-extrabold text-slate-900">0</p>
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-100">
+                                ↑ +2 Bulan ini
+                            </span>
+                        </div>
                     </div>
                     <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-emerald-50 rounded-full flex items-center justify-center text-emerald-600 opacity-60">
                         <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                     </div>
                 </div>
 
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 relative overflow-hidden flex items-center">
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 relative overflow-hidden flex items-center hover:shadow-md transition-shadow">
                     <div class="flex-1 relative z-10">
-                        <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider">Menunggu Persetujuan</h4>
-                        <p class="mt-2 text-4xl font-extrabold text-slate-900">0</p>
+                        <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Menunggu Persetujuan</h4>
+                        <div class="flex items-center space-x-3">
+                            <p class="text-4xl font-extrabold text-slate-900">0</p>
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-100">
+                                Perlu aksi
+                            </span>
+                        </div>
                     </div>
                     <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-amber-50 rounded-full flex items-center justify-center text-amber-600 opacity-60">
                         <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -107,7 +137,7 @@
 
         <!-- Pengumuman Section -->
         <div class="mt-10">
-            <h3 class="text-2xl font-bold text-slate-900 mb-6 border-b pb-3">Pengumuman Terbaru</h3>
+            <h3 class="text-2xl font-bold text-slate-900 mb-6 border-b border-slate-200 pb-3">Pengumuman Terbaru</h3>
             
             @if($pengumumans->count() > 0)
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
