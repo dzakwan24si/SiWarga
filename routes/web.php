@@ -4,7 +4,11 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    $latestPengumumans = \App\Models\Pengumuman::where('is_active', true)
+                            ->latest()
+                            ->take(3)
+                            ->get();
+    return view('welcome', compact('latestPengumumans'));
 });
 
 use App\Http\Controllers\DashboardController;
