@@ -29,7 +29,7 @@
                     <div class="flex-1 relative z-10">
                         <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Total RT</h4>
                         <div class="flex items-center space-x-3">
-                            <p class="text-4xl font-extrabold text-slate-900">0</p>
+                            <p class="text-4xl font-extrabold text-slate-900">{{ $totalRt }}</p>
                             <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-blue-50 text-blue-700 border border-blue-100">
                                 Tetap
                             </span>
@@ -44,9 +44,9 @@
                     <div class="flex-1 relative z-10">
                         <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Total Warga</h4>
                         <div class="flex items-center space-x-3">
-                            <p class="text-4xl font-extrabold text-slate-900">0</p>
+                            <p class="text-4xl font-extrabold text-slate-900">{{ $totalWarga }}</p>
                             <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-100">
-                                ↑ +2 Bulan ini
+                                Aktif
                             </span>
                         </div>
                     </div>
@@ -59,9 +59,9 @@
                     <div class="flex-1 relative z-10">
                         <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Menunggu Persetujuan</h4>
                         <div class="flex items-center space-x-3">
-                            <p class="text-4xl font-extrabold text-slate-900">0</p>
+                            <p class="text-4xl font-extrabold text-slate-900">{{ $pendingWarga }}</p>
                             <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-100">
-                                Perlu aksi
+                                Perlu Aksi
                             </span>
                         </div>
                     </div>
@@ -82,7 +82,7 @@
                     <div class="flex-1 relative z-10">
                         <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Total Kepala Keluarga</h4>
                         <div class="flex items-center space-x-3">
-                            <p class="text-4xl font-extrabold text-slate-900">0</p>
+                            <p class="text-4xl font-extrabold text-slate-900">{{ $totalKk }}</p>
                             <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-blue-50 text-blue-700 border border-blue-100">
                                 Tetap
                             </span>
@@ -97,9 +97,9 @@
                     <div class="flex-1 relative z-10">
                         <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Total Warga</h4>
                         <div class="flex items-center space-x-3">
-                            <p class="text-4xl font-extrabold text-slate-900">0</p>
+                            <p class="text-4xl font-extrabold text-slate-900">{{ $totalWarga }}</p>
                             <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-100">
-                                ↑ +2 Bulan ini
+                                Aktif
                             </span>
                         </div>
                     </div>
@@ -112,9 +112,9 @@
                     <div class="flex-1 relative z-10">
                         <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Menunggu Persetujuan</h4>
                         <div class="flex items-center space-x-3">
-                            <p class="text-4xl font-extrabold text-slate-900">0</p>
+                            <p class="text-4xl font-extrabold text-slate-900">{{ $pendingWarga }}</p>
                             <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-100">
-                                Perlu aksi
+                                Perlu Aksi
                             </span>
                         </div>
                     </div>
@@ -150,7 +150,7 @@
                                     {{ $pengumuman->created_at->format('d M Y') }} 
                                     <span class="mx-2">•</span> 
                                     <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
-                                    {{ $pengumuman->user->name }}
+                                    {{ $pengumuman->user?->name ?? 'Pengurus' }}
                                 </div>
                                 <p class="text-gray-700 whitespace-pre-line line-clamp-4 leading-relaxed">{{ $pengumuman->konten }}</p>
                             </div>

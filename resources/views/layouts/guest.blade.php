@@ -18,7 +18,7 @@
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-50">
             <div>
                 <a href="/">
-                    <h1 class="text-4xl font-bold text-slate-900 tracking-tight">SiWarga</h1>
+                    <img src="https://i.ibb.co.com/BKZq1pn1/logosiwarga.png" alt="SiWarga Logo" class="h-16 w-auto object-contain drop-shadow-sm">
                 </a>
             </div>
 

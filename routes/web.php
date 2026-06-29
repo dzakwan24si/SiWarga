@@ -15,9 +15,13 @@ use App\Http\Controllers\LaporanController;
 
 use App\Http\Controllers\KeuanganController;
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified', 'check.status'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth'])->group(function () {
+    Route::view('/verification/notice', 'auth.verification-notice')->name('verification.notice');
+});
+
+Route::middleware(['auth', 'check.status'])->group(function () {
     Route::resource('warga', WargaController::class);
     Route::resource('pengumuman', PengumumanController::class)->except(['show']);
     
@@ -41,6 +45,16 @@ Route::middleware('auth')->group(function () {
     // Notifications
     Route::get('/notifications/unread', [\App\Http\Controllers\NotificationController::class, 'unread'])->name('notifications.unread');
     Route::post('/notifications/mark-as-read', [\App\Http\Controllers\NotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
+});
+
+Route::middleware(['auth', 'role:rt,rw,admin'])->group(function () {
+    Route::get('/approval', [\App\Http\Controllers\ApprovalController::class, 'index'])->name('approval.index');
+    Route::post('/approval/{user}/approve', [\App\Http\Controllers\ApprovalController::class, 'approve'])->name('approval.approve');
+    Route::post('/approval/{user}/reject', [\App\Http\Controllers\ApprovalController::class, 'reject'])->name('approval.reject');
+});
+
+Route::middleware(['auth', 'role:rw'])->group(function () {
+    Route::resource('rt-management', \App\Http\Controllers\RtManagementController::class)->except(['show']);
 });
 
 require __DIR__.'/auth.php';

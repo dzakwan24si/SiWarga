@@ -22,6 +22,26 @@ class DashboardController extends Controller
             return view('warga.dashboard', compact('user', 'pengumumans', 'suratTerbaru', 'laporanTerbaru'));
         }
 
+        if ($user->role === 'rw' || $user->role === 'rt') {
+            $totalRt = \App\Models\User::where('role', 'rt')->where('status_akun', 'aktif')->count();
+            
+            $wargaQuery = \App\Models\User::where('role', 'warga');
+            $pendingQuery = \App\Models\User::where('role', 'warga')->where('status_akun', 'pending');
+            $kkQuery = \App\Models\Warga::query();
+
+            if ($user->role === 'rt') {
+                $wargaQuery->where('rt_number', $user->rt_number);
+                $pendingQuery->where('rt_number', $user->rt_number);
+                $kkQuery->where('rt_number', $user->rt_number);
+            }
+
+            $totalWarga = $wargaQuery->where('status_akun', 'aktif')->count();
+            $pendingWarga = $pendingQuery->count();
+            $totalKk = $kkQuery->distinct('no_kk')->count('no_kk');
+
+            return view('dashboard', compact('user', 'pengumumans', 'totalRt', 'totalWarga', 'pendingWarga', 'totalKk'));
+        }
+
         return view('dashboard', compact('user', 'pengumumans'));
     }
 }
