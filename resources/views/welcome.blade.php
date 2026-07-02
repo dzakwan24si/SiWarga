@@ -37,29 +37,60 @@
 </head>
 <body class="antialiased bg-white text-slate-800">
 
-    <div class="w-full bg-white min-h-screen overflow-hidden relative">
+    <div class="w-full bg-white min-h-screen overflow-hidden relative" x-data="{ mobileMenuOpen: false }">
         
         <!-- Navigation -->
-        <nav class="fixed top-4 left-4 right-4 lg:left-1/2 lg:-translate-x-1/2 lg:w-[95%] lg:max-w-[1200px] flex items-center justify-between px-6 py-4 bg-white/80 backdrop-blur-lg rounded-full shadow-lg border border-white/50 z-50 transition-all duration-300">
-            <a href="/" class="flex items-center gap-3">
-                <img src="https://i.ibb.co.com/BKZq1pn1/logosiwarga.png" alt="SiWarga Logo" class="h-14  w-auto">
-            </a>
-            
-            <ul class="hidden md:flex items-center gap-8">
-                <li><a href="#" class="text-sm font-semibold text-slate-900 border-b-2 border-slate-900 pb-1">Beranda</a></li>
-                <li><a href="#fitur" class="text-sm font-medium text-slate-500 hover:text-amber-500 transition-colors">Fitur Layanan</a></li>
-                <li><a href="#pengumuman" class="text-sm font-medium text-slate-500 hover:text-amber-500 transition-colors">Pengumuman</a></li>
-                <li><a href="#tentang" class="text-sm font-medium text-slate-500 hover:text-amber-500 transition-colors">Tentang Kami</a></li>
-            </ul>
+        <nav class="fixed top-4 left-4 right-4 lg:left-1/2 lg:-translate-x-1/2 lg:w-[95%] lg:max-w-[1200px] bg-white/80 backdrop-blur-lg rounded-2xl lg:rounded-full shadow-lg border border-white/50 z-50 transition-all duration-300">
+            <div class="flex items-center justify-between px-6 py-4">
+                <a href="/" class="flex items-center gap-3">
+                    <img src="https://i.ibb.co.com/BKZq1pn1/logosiwarga.png" alt="SiWarga Logo" class="h-10 md:h-14 w-auto">
+                </a>
+                
+                <!-- Desktop Menu -->
+                <ul class="hidden md:flex items-center gap-8">
+                    <li><a href="#" class="text-sm font-semibold text-slate-900 border-b-2 border-slate-900 pb-1">Beranda</a></li>
+                    <li><a href="#fitur" class="text-sm font-medium text-slate-500 hover:text-amber-500 transition-colors">Fitur Layanan</a></li>
+                    <li><a href="#pengumuman" class="text-sm font-medium text-slate-500 hover:text-amber-500 transition-colors">Pengumuman</a></li>
+                    <li><a href="#tentang" class="text-sm font-medium text-slate-500 hover:text-amber-500 transition-colors">Tentang Kami</a></li>
+                </ul>
 
-            <div class="flex items-center gap-4">
+                <!-- Desktop CTA -->
+                <div class="hidden md:flex items-center gap-4">
+                    @if (Route::has('login'))
+                        @auth
+                            <a href="{{ url('/dashboard') }}" class="text-sm font-bold text-slate-900 hover:text-amber-500 transition-colors px-4 py-2">Dashboard</a>
+                        @else
+                            <a href="{{ route('login') }}" class="text-sm font-bold text-slate-700 hover:text-amber-500 transition-colors px-4 py-2">Masuk</a>
+                            @if (Route::has('register'))
+                                <a href="{{ route('register') }}" class="bg-slate-900 hover:bg-slate-800 text-white text-sm font-bold py-2.5 px-6 rounded-full transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5">Daftar</a>
+                            @endif
+                        @endauth
+                    @endif
+                </div>
+
+                <!-- Mobile Hamburger Button -->
+                <div class="md:hidden flex items-center">
+                    <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-slate-900 hover:text-amber-500 focus:outline-none p-2">
+                        <svg x-show="!mobileMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                        <svg x-show="mobileMenuOpen" class="w-6 h-6 hidden" :class="{'hidden': !mobileMenuOpen}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Dropdown -->
+            <div x-show="mobileMenuOpen" x-transition.opacity class="md:hidden border-t border-slate-100 bg-white rounded-b-2xl px-6 py-4 space-y-4 shadow-inner" style="display: none;">
+                <a href="#" class="block text-sm font-semibold text-slate-900">Beranda</a>
+                <a href="#fitur" @click="mobileMenuOpen = false" class="block text-sm font-medium text-slate-500 hover:text-amber-500">Fitur Layanan</a>
+                <a href="#pengumuman" @click="mobileMenuOpen = false" class="block text-sm font-medium text-slate-500 hover:text-amber-500">Pengumuman</a>
+                <a href="#tentang" @click="mobileMenuOpen = false" class="block text-sm font-medium text-slate-500 hover:text-amber-500">Tentang Kami</a>
+                <hr class="border-slate-100">
                 @if (Route::has('login'))
                     @auth
-                        <a href="{{ url('/dashboard') }}" class="text-sm font-bold text-slate-900 hover:text-amber-500 transition-colors px-4 py-2">Dashboard</a>
+                        <a href="{{ url('/dashboard') }}" class="block text-sm font-bold text-slate-900">Dashboard</a>
                     @else
-                        <a href="{{ route('login') }}" class="hidden sm:inline-block text-sm font-bold text-slate-700 hover:text-amber-500 transition-colors px-4 py-2">Masuk</a>
+                        <a href="{{ route('login') }}" class="block text-sm font-bold text-slate-900">Masuk</a>
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="bg-slate-900 hover:bg-slate-800 text-white text-sm font-bold py-2.5 px-6 rounded-full transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5">Daftar</a>
+                            <a href="{{ route('register') }}" class="block text-sm font-bold text-amber-500">Daftar Akun</a>
                         @endif
                     @endauth
                 @endif
