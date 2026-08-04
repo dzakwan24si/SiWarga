@@ -1,58 +1,89 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🏘️ SiWarga - Sistem Informasi Tata Kelola Warga
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+SiWarga adalah aplikasi berbasis web yang dikembangkan menggunakan **Laravel** untuk mempermudah tata kelola administrasi di tingkat RT/RW atau Desa. Sistem ini dirancang untuk mendigitalkan proses pendataan warga, pengelolaan kas, hingga pelayanan surat-menyurat secara transparan dan efisien.
 
-## About Laravel
+## ✨ Fitur Utama
+* **👥 Manajemen Data Penduduk:** Pencatatan dan pengelolaan data demografi warga secara terpusat.
+* **💰 Kas & Keuangan:** Fitur untuk mencatat dan memonitor riwayat iuran serta pengeluaran kas warga secara transparan.
+* **📢 Pelaporan Warga:** Sistem pelaporan mandiri di mana warga dapat menyampaikan keluhan atau laporan kejadian beserta foto bukti langsung dari sistem.
+* **📄 Administrasi Persuratan:** Otomatisasi pembuatan dan pencetakan surat pengantar RT/RW untuk berbagai keperluan warga.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🛠️ Teknologi yang Digunakan
+* **Framework:** Laravel (v11)
+* **Bahasa:** PHP (Minimal versi 8.2)
+* **Database:** MySQL
+* **Tools:** Composer, Artisan CLI
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 🚀 Panduan Instalasi (Lokal)
+Ikuti langkah-langkah berikut untuk menjalankan proyek SiWarga di komputer lokal (menggunakan Laragon/XAMPP):
 
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
-
+### 1. Clone Repository
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone [https://github.com/USERNAME-GITHUB-KAMU/siwarga.git](https://github.com/USERNAME-GITHUB-KAMU/siwarga.git)
+cd siwarga
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+### 2. Install Dependencies
+Pastikan Composer sudah terinstal di komputer Anda, lalu jalankan:
+```bash
+composer install
+```
 
-## Contributing
+### 3. Pengaturan Environment
+Duplikat file `.env.example` menjadi `.env`, lalu atur koneksi database Anda:
+```bash
+cp .env.example .env
+```
+Buka file `.env` dan sesuaikan baris berikut dengan kredensial database lokal Anda:
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=siwarga
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 4. Generate Application Key
+```bash
+php artisan key:generate
+```
 
-## Code of Conduct
+### 5. Migrasi & Seeding Database
+Pastikan Anda sudah membuat database kosong bernama `siwarga` di HeidiSQL atau phpMyAdmin, lalu eksekusi tabel beserta data dummynya:
+```bash
+php artisan migrate --seed
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 6. Tautkan Storage (Wajib)
+Agar fitur *upload* foto pada Pelaporan Warga dapat berfungsi dan ditampilkan dengan baik, jalankan perintah ini:
+```bash
+php artisan storage:link
+```
 
-## Security Vulnerabilities
+### 7. Jalankan Aplikasi
+```bash
+php artisan serve
+```
+Aplikasi sekarang dapat diakses melalui browser di alamat `http://localhost:8000` atau melalui domain lokal Laragon Anda.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
+## 📸 Tangkapan Layar (Screenshots)
+### Halaman Login
+![Halaman Login](https://i.ibb.co.com/N2C5Drr2/siwarga-login.png)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Dashboard Warga
+![Dashboard Warga](https://i.ibb.co.com/bMPzwpfD/siwarga-member.png)
+
+### Dashboard Pengurus
+![Dashboard Pengurus](https://i.ibb.co.com/wZg1Gx2Q/siwarga-pengurus.png)
+
+---
+
+## 👨‍💻 Pengembang
+Dikembangkan oleh **M. Dzakwan Syafiq**  
+*Mahasiswa Sistem Informasi*  
+GitHub: [@dzakwan24si](https://github.com/dzakwan24si)
